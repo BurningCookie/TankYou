@@ -18,6 +18,6 @@ public class Gametest : MonoBehaviour
     }
     void SayHi()
     {
-        Debug.Log("hi");
+        //Debug.Log("hi");
     }
 }
