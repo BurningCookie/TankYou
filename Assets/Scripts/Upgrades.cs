@@ -26,20 +26,17 @@ public class Upgrades : MonoBehaviour
             if (Input.GetKeyDown("1"))
             {
                 Debug.Log("Upgraded "  + currentlyActiveIcons[0].transform.Find("UpgradeNameText").GetComponent<Text>().text);
-                tankController.maxSpeed += 20;
-                UpgradePurchased();
+                UpgradePurchased(currentlyActiveIcons[0].transform.Find("UpgradeNameText").GetComponent<Text>().text);
             }
             if (Input.GetKeyDown("2"))
             {
                 Debug.Log("Upgraded " + currentlyActiveIcons[1].transform.Find("UpgradeNameText").GetComponent<Text>().text);
-                tankController.rotationSpeed += 20;
-                UpgradePurchased();
+                UpgradePurchased(currentlyActiveIcons[1].transform.Find("UpgradeNameText").GetComponent<Text>().text);
             }
             if (Input.GetKeyDown("3"))
             {
                 Debug.Log("Upgraded " + currentlyActiveIcons[2].transform.Find("UpgradeNameText").GetComponent<Text>().text);
-                tankController.acceleration += 10;
-                UpgradePurchased();
+                UpgradePurchased(currentlyActiveIcons[2].transform.Find("UpgradeNameText").GetComponent<Text>().text);
             }
         }
     }
@@ -54,22 +51,47 @@ public class Upgrades : MonoBehaviour
     }
     void ShowUpgrades()
     {
-            for (int i = 0; i < 3; i++)
+        int rnd = Random.Range(0, upgradeNames.Count);
+        for (int i = 0; i < 3; i++)
+        {
+            if (rnd < upgradeNames.Count - 1)
             {
-                int rnd = Random.Range(0, upgradeNames.Count);
-                GameObject upgrade = Instantiate(upgradeIcon);
-                upgrade.transform.Find("UpgradeNameText").GetComponent<Text>().text = upgradeNames[rnd];
-                upgrade.transform.Find("keyText").GetComponent<Text>().text = "Press " + (i + 1).ToString();
-                upgrade.GetComponent<Image>().sprite = upgradeImages[rnd];
-                upgrade.transform.SetParent(transform);
-                currentlyActiveIcons.Add(upgrade);
+                rnd++;
             }
+            else
+            {
+                rnd = 0;
+            }
+            GameObject upgrade = Instantiate(upgradeIcon);
+            upgrade.transform.Find("UpgradeNameText").GetComponent<Text>().text = upgradeNames[rnd];
+            upgrade.transform.Find("keyText").GetComponent<Text>().text = "Press " + (i + 1).ToString();
+            upgrade.GetComponent<Image>().sprite = upgradeImages[rnd];
+            upgrade.transform.SetParent(transform);
+            currentlyActiveIcons.Add(upgrade);
+        }
     }
 
 
 
-    void UpgradePurchased()
+    void UpgradePurchased(string upgrade)
     {
+        switch (upgrade)
+        {
+            case "Topspeed":
+                tankController.maxSpeed += 20;
+                break;
+            case "Rotation":
+                tankController.rotationSpeed += 20;
+                break;
+            case "Acceleration":
+                tankController.acceleration += 10;
+                break;
+            case "Turret Rotation":
+                tankController.turretSpeed += 10;
+                break;
+            default:
+                break;
+        }
         if (notPurchasedUprages != 0)
         {
             foreach(GameObject g in currentlyActiveIcons)
