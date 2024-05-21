@@ -10,9 +10,12 @@ public class TankController : MonoBehaviour
 
     private Vector2 movementVector;
 
+    public Transform turretParent;
+
     public float maxSpeed;
     public float rotationSpeed;
     public float acceleration;
+    public float turretSpeed;
 
     [SerializeField] private float deacceleration;
     [SerializeField] private float reverseRotationThreshold;
@@ -42,6 +45,22 @@ public class TankController : MonoBehaviour
         {
             currentForwardDirection = 0;
         }
+    }
+
+    public void HandleTurretMovement(Vector2 pointerPosition)
+    {
+        var turretDirection = (Vector3)pointerPosition - transform.position;
+
+        var desiredAngle = Mathf.Atan2(turretDirection.y, turretDirection.x) * Mathf.Rad2Deg;
+
+        var rotationStep = turretSpeed * Time.deltaTime;
+
+        turretParent.rotation = Quaternion.RotateTowards(turretParent.rotation, Quaternion.Euler(0, 0, desiredAngle), rotationStep);
+    }
+
+    public void HandleShoot()
+    {
+        Debug.Log("FIRE");
     }
 
     private void CalculateSpeed(Vector2 movementVector)

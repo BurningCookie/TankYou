@@ -10,6 +10,16 @@ public class PlayerInput : MonoBehaviour
     public UnityEvent<Vector2> OnMove = new UnityEvent<Vector2>();
     public UnityEvent OnShoot = new UnityEvent();
 
+    private Camera mainCamera;
+
+    private void Awake()
+    {
+        if (mainCamera == null)
+        {
+            mainCamera = Camera.main;
+        }
+    }
+
     void Update()
     {
         GetMovement();
@@ -27,7 +37,15 @@ public class PlayerInput : MonoBehaviour
 
     private void GetTurretMovement()
     {
-        
+        OnTurretMove?.Invoke(GetMousePosition());
+    }
+
+    private Vector2 GetMousePosition()
+    {
+        Vector3 mousePosition = Input.mousePosition;
+        mousePosition.z = mainCamera.nearClipPlane;
+        Vector2 mouseWorldPosition = mainCamera.ScreenToWorldPoint(mousePosition);
+        return mouseWorldPosition;
     }
 
     private void GetMovement()
