@@ -42,3 +42,15 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: TankBody
+    uniqueID: 1625047103
+    locked: 0
+  - name: TurretBody
+    uniqueID: 229992807
+    locked: 0
+  - name: Bullet
+    uniqueID: 1893868315
+    locked: 0
+  - name: TurretBarell
+    uniqueID: 409098239
+    locked: 0
