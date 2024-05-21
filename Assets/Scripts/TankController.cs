@@ -50,11 +50,11 @@ public class TankController : MonoBehaviour
         }
         else
         {
-            if (currentSpeed < 0)
+            if (currentSpeed < -0.1)
             {
                 currentSpeed += deacceleration * Time.deltaTime;
             }
-            else if (currentSpeed > 0)
+            else if (currentSpeed > 0.1)
             {
                 currentSpeed -= deacceleration * Time.deltaTime;
             }
