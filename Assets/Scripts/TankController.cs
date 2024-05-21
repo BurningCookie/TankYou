@@ -14,6 +14,7 @@ public class TankController : MonoBehaviour
     [SerializeField] float rotationSpeed;
     [SerializeField] float acceleration;
     [SerializeField] float deacceleration;
+    [SerializeField] float reverseRotationThreshold;
     [SerializeField] float currentSpeed;
     [SerializeField] float currentForwardDirection;
 
@@ -72,7 +73,7 @@ public class TankController : MonoBehaviour
     {
         rb.velocity = (Vector2)transform.up  * currentSpeed * Time.fixedDeltaTime;
 
-        if (currentSpeed < -10)
+        if (currentSpeed < reverseRotationThreshold)
         {
             rb.MoveRotation(transform.rotation * Quaternion.Euler(0, 0, movementVector.x * rotationSpeed * Time.fixedDeltaTime));
         }
