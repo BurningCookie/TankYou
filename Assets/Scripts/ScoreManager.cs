@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 public class ScoreManager : MonoBehaviour
 {
@@ -9,9 +10,12 @@ public class ScoreManager : MonoBehaviour
     private static int xp = 0;
     private static int level = 1;
     private static int requiredXp = 10;
+
     [SerializeField] private Text scoreText;
     [SerializeField] private Text levelText;
     [SerializeField] private Text xpText;
+
+    public static UnityEvent levelup = new UnityEvent();
 
     public static void AddXp(int value)
     {
@@ -40,12 +44,15 @@ public class ScoreManager : MonoBehaviour
 
     private void Update()
     {
+        //leveling up
         if (xp >= requiredXp)
         {
             xp = xp - requiredXp;
             level++;
             requiredXp = 10 * level;
+            levelup.Invoke();
         }
+
         UpdateUI();
     }
 
