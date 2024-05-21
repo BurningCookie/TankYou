@@ -10,13 +10,14 @@ public class TankController : MonoBehaviour
 
     private Vector2 movementVector;
 
-    [SerializeField] float maxSpeed;
-    [SerializeField] float rotationSpeed;
-    [SerializeField] float acceleration;
-    [SerializeField] float deacceleration;
-    [SerializeField] float reverseRotationThreshold;
-    [SerializeField] float currentSpeed;
-    [SerializeField] float currentForwardDirection;
+    public float maxSpeed;
+    public float rotationSpeed;
+    public float acceleration;
+
+    [SerializeField] private float deacceleration;
+    [SerializeField] private float reverseRotationThreshold;
+    [SerializeField] private float currentSpeed;
+    [SerializeField] private float currentForwardDirection;
 
     private void Awake()
     {
