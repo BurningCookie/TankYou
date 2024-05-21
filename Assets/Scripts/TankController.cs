@@ -36,25 +36,49 @@ public class TankController : MonoBehaviour
         {
             currentForwardDirection = -1;
         }
+        else
+        {
+            currentForwardDirection = 0;
+        }
     }
 
     private void CalculateSpeed(Vector2 movementVector)
     {
         if (Mathf.Abs(movementVector.y) > 0)
         {
-            currentSpeed += acceleration * Time.deltaTime;
+            currentSpeed += acceleration * currentForwardDirection * Time.deltaTime;
         }
         else
         {
-            currentSpeed -= deacceleration * Time.deltaTime;
+            if (currentSpeed < 0)
+            {
+                currentSpeed += deacceleration * Time.deltaTime;
+            }
+            else if (currentSpeed > 0)
+            {
+                currentSpeed -= deacceleration * Time.deltaTime;
+            }
+
+            if (Mathf.Abs(currentSpeed) < 0.1)
+            {
+                currentSpeed = 0;
+            }
         }
 
-        currentSpeed = Mathf.Clamp(currentSpeed, 0, maxSpeed);
+        currentSpeed = Mathf.Clamp(currentSpeed, -maxSpeed, maxSpeed);
     }
 
     private void FixedUpdate()
     {
-        rb.velocity = (Vector2)transform.up  * currentSpeed * currentForwardDirection * Time.fixedDeltaTime;
-        rb.MoveRotation(transform.rotation * Quaternion.Euler(0, 0, -movementVector.x * rotationSpeed * Time.fixedDeltaTime));
+        rb.velocity = (Vector2)transform.up  * currentSpeed * Time.fixedDeltaTime;
+
+        if (currentSpeed < -10)
+        {
+            rb.MoveRotation(transform.rotation * Quaternion.Euler(0, 0, movementVector.x * rotationSpeed * Time.fixedDeltaTime));
+        }
+        else
+        {
+            rb.MoveRotation(transform.rotation * Quaternion.Euler(0, 0, -movementVector.x * rotationSpeed * Time.fixedDeltaTime));
+        }
     }
 }

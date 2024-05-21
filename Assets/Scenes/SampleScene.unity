@@ -319,7 +319,7 @@ MonoBehaviour:
   acceleration: 70
   deacceleration: 50
   currentSpeed: 0
-  currentForwardDirection: 1
+  currentForwardDirection: 0
 --- !u!50 &1448679910
 Rigidbody2D:
   serializedVersion: 4
