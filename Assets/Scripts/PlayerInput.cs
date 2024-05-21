@@ -14,7 +14,7 @@ public class PlayerInput : MonoBehaviour
 
     private void GetMovement()
     {
-        Vector2 movementVector = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+        Vector2 movementVector = new Vector2(Input.GetAxisRaw("Horizontal") * Time.deltaTime, Input.GetAxisRaw("Vertical") * Time.deltaTime);
         OnMove?.Invoke(movementVector.normalized);
     }
 }

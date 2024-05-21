@@ -314,9 +314,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 075078fc80b3dda42ae577a17c364588, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 1448679910}
   maxSpeed: 70
-  rotationSpeed: 200
+  rotationSpeed: 70
+  acceleration: 70
+  deacceleration: 50
+  currentSpeed: 0
+  currentForwardDirection: 1
 --- !u!50 &1448679910
 Rigidbody2D:
   serializedVersion: 4
