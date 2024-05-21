@@ -8,12 +8,16 @@ public class Upgrades : MonoBehaviour
     [SerializeField] private GameObject upgradeIcon;
     [SerializeField] private List<Sprite> upgradeImages = new List<Sprite>();
     [SerializeField] private List<string> upgradeNames = new List<string>();
+
+    private TankController tankController;
+
     private List<GameObject> currentlyActiveIcons = new List<GameObject>();
     private int notPurchasedUprages = 0;
 
     private void Start()
     {
         ScoreManager.levelup.AddListener(NewUpgrades);
+        tankController = GameObject.FindGameObjectWithTag("Player").GetComponent<TankController>();
     }
     private void Update()
     {
@@ -22,16 +26,19 @@ public class Upgrades : MonoBehaviour
             if (Input.GetKeyDown("1"))
             {
                 Debug.Log("Upgraded "  + currentlyActiveIcons[0].transform.Find("UpgradeNameText").GetComponent<Text>().text);
+                tankController.maxSpeed += 20;
                 UpgradePurchased();
             }
             if (Input.GetKeyDown("2"))
             {
                 Debug.Log("Upgraded " + currentlyActiveIcons[1].transform.Find("UpgradeNameText").GetComponent<Text>().text);
+                tankController.rotationSpeed += 20;
                 UpgradePurchased();
             }
             if (Input.GetKeyDown("3"))
             {
                 Debug.Log("Upgraded " + currentlyActiveIcons[2].transform.Find("UpgradeNameText").GetComponent<Text>().text);
+                tankController.acceleration += 10;
                 UpgradePurchased();
             }
         }
