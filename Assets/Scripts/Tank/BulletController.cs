@@ -30,14 +30,8 @@ public class BulletController : MonoBehaviour
         conqueredDistance = Vector2.Distance(transform.position, startPosition);
         if (conqueredDistance > maxDistance)
         {
-            DisableObject();
+            Destroy(rb.gameObject);
         }
-    }
-
-    private void DisableObject()
-    {
-        rb.velocity = Vector2.zero;
-        gameObject.SetActive(false);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -50,6 +44,6 @@ public class BulletController : MonoBehaviour
             damagable.Hit(damage);
         }
 
-        DisableObject();
+        Destroy(rb.gameObject);
     }
 }

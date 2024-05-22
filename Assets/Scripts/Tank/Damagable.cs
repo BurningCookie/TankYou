@@ -47,4 +47,9 @@ public class Damagable : MonoBehaviour
         Health = Mathf.Clamp(Health, 0, maxHealth);
         OnHeal?.Invoke();
     }
+
+    public void Death()
+    {
+        Destroy(gameObject);
+    }
 }
