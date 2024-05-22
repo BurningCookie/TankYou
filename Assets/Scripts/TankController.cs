@@ -6,7 +6,7 @@ using UnityEngine;
 public class TankController : MonoBehaviour
 {
 
-    private Rigidbody2D rb;
+    public Rigidbody2D rb;
 
     private Vector2 movementVector;
 
@@ -22,9 +22,16 @@ public class TankController : MonoBehaviour
     [SerializeField] private float currentSpeed;
     [SerializeField] private float currentForwardDirection;
 
+    public Turret[] turrets;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+
+        if (turrets == null || turrets.Length == 0)
+        {
+            turrets = GetComponentsInChildren<Turret>();
+        }
     }
 
     public void HandleMove(Vector2 movementVector)
@@ -51,7 +58,7 @@ public class TankController : MonoBehaviour
     {
         var turretDirection = (Vector3)pointerPosition - transform.position;
 
-        var desiredAngle = Mathf.Atan2(turretDirection.y, turretDirection.x) * Mathf.Rad2Deg;
+        var desiredAngle = (Mathf.Atan2(turretDirection.y, turretDirection.x) * Mathf.Rad2Deg) - 90;
 
         var rotationStep = turretSpeed * Time.deltaTime;
 
@@ -60,7 +67,10 @@ public class TankController : MonoBehaviour
 
     public void HandleShoot()
     {
-        Debug.Log("FIRE");
+        foreach (var turret in turrets)
+        {
+            turret.Shoot();
+        }
     }
 
     private void CalculateSpeed(Vector2 movementVector)
@@ -100,6 +110,19 @@ public class TankController : MonoBehaviour
         else
         {
             rb.MoveRotation(transform.rotation * Quaternion.Euler(0, 0, -movementVector.x * rotationSpeed * Time.fixedDeltaTime));
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        currentSpeed = 0;
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag != "Enemy")
+        {
+            currentSpeed = 0;
         }
     }
 }
