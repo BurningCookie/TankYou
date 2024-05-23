@@ -1,20 +1,54 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
+using UnityEngine.Pool;
 
 public class Turret : MonoBehaviour
 {
     public List<Transform> turretBarrels;
-    public GameObject bulletPrefab;
+    [SerializeField] private BulletController bulletPrefab;
     public float reloadDelay;
 
     private bool canShoot = true;
     private Collider2D[] tankColliders;
     private float currentDelay = 0;
 
+    private IObjectPool<BulletController> bulletPool;
+
+    [SerializeField] private bool collectionCheck = true;
+
+    [SerializeField] private int defaultCapacity = 10;
+    [SerializeField] private int maxCapacity = 100;
+
     private void Awake()
     {
         tankColliders = GetComponentsInParent<Collider2D>();
+
+        bulletPool = new ObjectPool<BulletController>(CreateProjectile, OnGetFromPool, OnReleaseToPool, OnDestroyPooledObject, collectionCheck, defaultCapacity, maxCapacity);
+    }
+
+    private void OnDestroyPooledObject(BulletController pooledBullet)
+    {
+        Destroy(pooledBullet.gameObject);
+    }
+
+    private void OnReleaseToPool(BulletController pooledBullet)
+    {
+        pooledBullet.gameObject.SetActive(false);
+    }
+
+    private void OnGetFromPool(BulletController pooledBullet)
+    {
+        pooledBullet.gameObject.SetActive(true);
+    }
+
+    private BulletController CreateProjectile()
+    {
+        BulletController bullet = Instantiate(bulletPrefab);
+        bullet.BulletPool = bulletPool;
+        return bullet;
     }
 
     private void Update()
@@ -36,11 +70,11 @@ public class Turret : MonoBehaviour
             canShoot = false;
             currentDelay = reloadDelay;
 
-            foreach (var barrel in turretBarrels)
+            foreach (var varbarrel in turretBarrels)
             {
-                GameObject bullet = Instantiate(bulletPrefab);
-                bullet.transform.position = barrel.position;
-                bullet.transform.localRotation = barrel.rotation;
+                BulletController bullet = bulletPool.Get();
+                bullet.transform.position = varbarrel.position;
+                bullet.transform.localRotation = varbarrel.rotation;
                 bullet.GetComponent<BulletController>().Initialize();
                 foreach (var collider in tankColliders)
                 {

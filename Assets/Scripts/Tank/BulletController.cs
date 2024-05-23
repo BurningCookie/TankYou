@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Pool;
 
 public class BulletController : MonoBehaviour
 {
@@ -13,6 +14,10 @@ public class BulletController : MonoBehaviour
     private Vector2 startPosition;
     private float conqueredDistance = 0;
     private Rigidbody2D rb;
+
+    private IObjectPool<BulletController> bulletPool;
+
+    public IObjectPool<BulletController> BulletPool { set => bulletPool = value; }
 
     private void Awake()
     {
@@ -25,12 +30,19 @@ public class BulletController : MonoBehaviour
         rb.velocity = transform.up * speed;
     }
 
+    public void Deactivate()
+    {
+        rb.velocity = Vector2.zero;
+        rb.angularVelocity = 0f;
+        bulletPool.Release(this);
+    }
+
     private void Update()
     {
         conqueredDistance = Vector2.Distance(transform.position, startPosition);
         if (conqueredDistance > maxDistance)
         {
-            Destroy(rb.gameObject);
+            Deactivate();
         }
     }
 
@@ -44,6 +56,6 @@ public class BulletController : MonoBehaviour
             damagable.Hit(damage);
         }
 
-        Destroy(rb.gameObject);
+        Deactivate();
     }
 }

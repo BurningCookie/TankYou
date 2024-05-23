@@ -132,7 +132,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 17656696}
-  - component: {fileID: 17656697}
   m_Layer: 7
   m_Name: StaticEnemy
   m_TagString: Untagged
@@ -156,22 +155,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &17656697
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 17656695}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0cda87b8eab47fa4da012729260e0730, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  shootBehaviour: {fileID: 0}
-  patrolBehavior: {fileID: 0}
-  tank: {fileID: 0}
-  detector: {fileID: 0}
 --- !u!1 &165452014
 GameObject:
   m_ObjectHideFlags: 0
@@ -367,6 +350,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 6724588973986702995, guid: f21a660e622a5df41b782d0fc562721c, type: 3}
+      propertyPath: bulletPrefab
+      value: 
+      objectReference: {fileID: 2806019530457170871, guid: 6cc50c9638bcd4646944dad50f219504, type: 3}
     - target: {fileID: 6724588973986703005, guid: f21a660e622a5df41b782d0fc562721c, type: 3}
       propertyPath: m_Layer
       value: 7
@@ -1392,6 +1379,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 6724588973986702995, guid: 84b14589b8e2da646af0b0f7686d7fd3, type: 3}
+      propertyPath: bulletPrefab
+      value: 
+      objectReference: {fileID: 2806019530457170871, guid: 6cc50c9638bcd4646944dad50f219504, type: 3}
     - target: {fileID: 6724588973986703005, guid: 84b14589b8e2da646af0b0f7686d7fd3, type: 3}
       propertyPath: m_Layer
       value: 6

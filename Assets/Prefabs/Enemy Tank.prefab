@@ -163,8 +163,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   turretBarrels:
   - {fileID: 6724588973514695898}
-  bulletPrefab: {fileID: 2520224279145564825, guid: 6cc50c9638bcd4646944dad50f219504, type: 3}
+  bulletPrefab: {fileID: 2806019530457170871, guid: 6cc50c9638bcd4646944dad50f219504, type: 3}
   reloadDelay: 1
+  collectionCheck: 1
+  defaultCapacity: 10
+  maxCapacity: 100
 --- !u!1 &6724588974406582598
 GameObject:
   m_ObjectHideFlags: 0
