@@ -8,6 +8,7 @@ public class Damagable : MonoBehaviour
     public int maxHealth = 100;
     [SerializeField]
     private int health;
+    [SerializeField] private GameObject xpOrb;
 
     public int Health
     {
@@ -50,6 +51,15 @@ public class Damagable : MonoBehaviour
 
     public void Death()
     {
+        //Dropping XpOrbs
+        if (xpOrb != null)
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                GameObject orb = Instantiate(xpOrb, transform.position + new Vector3(Random.Range( -0.6f, 0.6f), Random.Range(-0.6f, 0.6f), Random.Range(-0.6f, 0.6f)), Quaternion.identity);
+                orb.GetComponent<XpOrb>().SetXpDrop(Random.Range(1,3));
+            }
+        }
         Destroy(gameObject);
     }
 }
