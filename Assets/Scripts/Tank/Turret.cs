@@ -11,6 +11,8 @@ public class Turret : MonoBehaviour
     [SerializeField] private BulletController bulletPrefab;
     public float reloadDelay;
 
+    public int damage;
+
     private bool canShoot = true;
     private Collider2D[] tankColliders;
     private float currentDelay = 0;
@@ -27,6 +29,8 @@ public class Turret : MonoBehaviour
         tankColliders = GetComponentsInParent<Collider2D>();
 
         bulletPool = new ObjectPool<BulletController>(CreateProjectile, OnGetFromPool, OnReleaseToPool, OnDestroyPooledObject, collectionCheck, defaultCapacity, maxCapacity);
+
+        damage = bulletPrefab.damage;
     }
 
     private void OnDestroyPooledObject(BulletController pooledBullet)
@@ -75,6 +79,7 @@ public class Turret : MonoBehaviour
                 BulletController bullet = bulletPool.Get();
                 bullet.transform.position = varbarrel.position;
                 bullet.transform.localRotation = varbarrel.rotation;
+                bullet.damage = damage;
                 bullet.GetComponent<BulletController>().Initialize();
                 foreach (var collider in tankColliders)
                 {
