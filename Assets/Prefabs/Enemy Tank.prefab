@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6724588973514695898}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Barrel
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6724588973874045061}
   - component: {fileID: 6724588973874045060}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: TankBody
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -125,7 +125,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6724588973986703004}
   - component: {fileID: 6724588973986702995}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Turret
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -182,7 +182,7 @@ GameObject:
   - component: {fileID: 4839967732068530475}
   - component: {fileID: 6724588974406582596}
   - component: {fileID: 6724588974406582617}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Enemy Tank
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -325,7 +325,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6724588974960230155}
   - component: {fileID: 6724588974960230154}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Square (1)
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -408,7 +408,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6724588975001998947}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: TurretParent
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -442,7 +442,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6724588975231583678}
   - component: {fileID: 6724588975231583677}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Square
   m_TagString: Enemy
   m_Icon: {fileID: 0}

@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6724588973514695898}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Barrel
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6724588973874045061}
   - component: {fileID: 6724588973874045060}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: TankBody
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -125,7 +125,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6724588973986703004}
   - component: {fileID: 6724588973986702995}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Turret
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -165,6 +165,7 @@ MonoBehaviour:
   - {fileID: 6724588973514695898}
   bulletPrefab: {fileID: 2806019530457170871, guid: 6cc50c9638bcd4646944dad50f219504, type: 3}
   reloadDelay: 1
+  damage: 0
   collectionCheck: 1
   defaultCapacity: 10
   maxCapacity: 100
@@ -182,7 +183,7 @@ GameObject:
   - component: {fileID: 4839967732068530475}
   - component: {fileID: 6724588974406582596}
   - component: {fileID: 6724588974406582617}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Tank
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -300,6 +301,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   health: 0
+  xpOrb: {fileID: 772221361501686416, guid: 6e072921d5767404399aea4e72eec8c5, type: 3}
   OnDead:
     m_PersistentCalls:
       m_Calls:
@@ -381,7 +383,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6724588974960230155}
   - component: {fileID: 6724588974960230154}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Square (1)
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -464,7 +466,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6724588975001998947}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: TurretParent
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -498,7 +500,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6724588975231583678}
   - component: {fileID: 6724588975231583677}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Square
   m_TagString: Player
   m_Icon: {fileID: 0}
