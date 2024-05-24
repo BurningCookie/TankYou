@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4037618111229779868}
   - component: {fileID: 8324514996566705622}
   - component: {fileID: 4446160114800112388}
-  m_Layer: 6
+  m_Layer: 10
   m_Name: XpOrb
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -124,4 +124,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6628919b1af53954bba9aa34ecc98411, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  xpDrop: 1

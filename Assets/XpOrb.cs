@@ -5,7 +5,7 @@ using UnityEngine;
 public class XpOrb : MonoBehaviour
 {
     private int xpDrop = 1;
-    private float speed = 1;
+    private float speed = 4;
     private GameObject player;
 
     private void Start()
